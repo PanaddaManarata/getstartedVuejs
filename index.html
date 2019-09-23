@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{title}}</p>
+    </div>
+
+    <div id="app2">
+        <input type="text" v-on:input="changeTitle">
+        <p>{{title}}</p>
+    </div>
+
+    <div id="app3">
+        <p>{{sayHello() }}</p>
+    </div>
+
+    <!-- app3: if you want to return a function it has to be able
+to be returned in a string! not an object,..
+{{ }} acces to data and methods prop -->
+
+    <div id="app4">
+        <p>{{sayHello() }} - <a v-bind:href="link"> Google </a> </p>
+    </div>
+
+    <!--add link to html with v-bind, no {{}} needed -->
+
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                title: 'Hello world!'
+
+            }
+        });
+
+        new Vue({
+            el: '#app2',
+            data: {
+                title: 'hello second world!'
+            },
+            methods: {
+                changeTitle: function (event) {
+                    this.title = event.target.value;
+                }
+            }
+        });
+
+        new Vue({
+            el: '#app3',
+            data: {
+                title: 'Hello world!'
+            },
+            methods: {
+                sayHello: function () {
+                    return 'Hello 3!';
+                }
+            }
+        });
+
+        new Vue({
+            el: '#app4',
+            data: {
+                title: 'Hello 4th world!',
+                link: 'http://google.com'
+            },
+            methods: {
+                sayHello: function () {
+                    return this.title;
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
